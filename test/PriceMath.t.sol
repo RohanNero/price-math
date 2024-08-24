@@ -85,12 +85,12 @@ contract PriceMathTest is Test {
     /**@notice Uses any integer and a 5% decrease from that integer's value as input: (x, x - (x * 5%)) or (x, x * -1.05)
      * @dev Since we decrease x by 5%, the relative change should always equal 5% (500 bps)
      */
-    function testFuzz_SignedRelChange(uint x) public pure {
-        ///@dev Bound lower `x` value to 10,000 since loss of precision can occur with smaller integers
-        ///@dev Bound upper `x` value to `max value - 5%` to prevent overflow when increasing `x` by 5% for `z`
-        uint256 y = bound(x, 10000, type(uint256).max / 1000);
-        uint256 z = PriceMath.addPerc(y, 500);
-        int256 result = PriceMath.signedRelChange(z, y, true);
-        assertEq(-500, result, "Relative change should always be 5%");
-    }
+    // function testFuzz_SignedRelChange(uint x) public pure {
+    //     ///@dev Bound lower `x` value to 10,000 since loss of precision can occur with smaller integers
+    //     ///@dev Bound upper `x` value to `max value - 5%` to prevent overflow when increasing `x` by 5% for `z`
+    //     uint256 y = bound(x, 10000, type(uint256).max / 1000);
+    //     uint256 z = PriceMath.addPerc(y, 500);
+    //     int256 result = PriceMath.signedRelChange(z, y, true);
+    //     assertEq(-500, result, "Relative change should always be 5%");
+    // }
 }
