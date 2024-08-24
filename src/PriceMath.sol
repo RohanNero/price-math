@@ -6,7 +6,6 @@ pragma solidity 0.8.26;
  * @author Rohan Nero
  * @notice This library contains a handful of arithmetic functions to aid developers when handling prices */
 library PriceMath {
-
     /**@notice Returns the absolute change between two unsigned integers */
     function absDiff(uint256 a, uint256 b) public pure returns (uint256) {
         return a > b ? a - b : b - a;
@@ -52,7 +51,7 @@ library PriceMath {
      */
     function addPerc(uint256 a, uint256 p) public pure returns (uint256) {
         if (p == 0) return a;
-        return a + (a * p) / 10000;
+        return a + ((a * p) / 10000);
     }
 
     /**
@@ -64,6 +63,6 @@ library PriceMath {
      */
     function subPerc(uint256 a, uint256 p) public pure returns (uint256) {
         if (p == 0) return a;
-        return a - (a * p) / 10000;
+        return a - ((a * p) / 10000);
     }
 }
