@@ -41,3 +41,7 @@ Decreases an amount by a given percentage
 ```solidity
 subPerc(uint256 a, uint256 p) returns(uint256)
 ```
+
+## Considerations
+
+Some functions, such as `addPerc` and `subPerc` are susceptible to overflow when provided large integer values. We could circumvent this issue by dividing the integers by a `1eX` value, the only trade-off is we lose some precision.

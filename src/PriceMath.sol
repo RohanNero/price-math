@@ -17,9 +17,32 @@ library PriceMath {
      *@param b The new value
      * @return The percentage change from a to b, scaled by 1e4 (basis points)
      */
-    function relChange(uint256 a, uint256 b) public pure returns (uint256) {
-        uint diff = absDiff(a, b);
-        return (diff * 1e4) / a;
+    // function relChange(uint256 a, uint256 b) public pure returns (uint256) {
+    //     uint diff = absDiff(a, b);
+    //     return (diff * 1e4) / a;
+    // }
+    /**
+     * @notice Calculates the relative change between two values
+     * @dev Returns the percentage change in basis points (1/100th of a percent)
+     * @dev Loss of precision can occur when using small integers (a < 10,000)
+     * @param a The original value
+     * @param b The new value
+     * @param roundUp If true, round up the result, if false, round down
+     * @return The relative change as a percentage in basis points
+     */
+    function relChange(
+        uint256 a,
+        uint256 b,
+        bool roundUp
+    ) public pure returns (uint256) {
+        uint256 diff = absDiff(a, b);
+        uint256 result = (diff * 1e4) / a;
+
+        if (roundUp && (diff * 1e4) % a != 0) {
+            result += 1;
+        }
+
+        return result;
     }
 
     /**
@@ -31,15 +54,42 @@ library PriceMath {
      * @param b The new value
      * @return The percentage change from a to b, scaled by 1e4 (basis points)
      */
+    // function signedRelChange(
+    //     uint256 a,
+    //     uint256 b
+    // ) public pure returns (int256) {
+    //     if (a == 0) {
+    //         return b > 0 ? int256(type(int256).max) : int256(0);
+    //     }
+    //     int256 diff = int256(b) - int256(a);
+    //     return (diff * 1e4) / int256(a);
+    // }
     function signedRelChange(
         uint256 a,
-        uint256 b
+        uint256 b,
+        bool roundUp
     ) public pure returns (int256) {
         if (a == 0) {
             return b > 0 ? int256(type(int256).max) : int256(0);
         }
+
         int256 diff = int256(b) - int256(a);
-        return (diff * 1e4) / int256(a);
+        int256 result = (diff * 1e4) / int256(a);
+
+        if (roundUp) {
+            // Check if there's a remainder to decide if rounding is needed
+            int256 remainder = (diff * 1e4) % int256(a);
+            if (remainder != 0) {
+                // If rounding up, consider whether diff is positive or negative
+                if (
+                    (diff > 0 && remainder > 0) || (diff < 0 && remainder < 0)
+                ) {
+                    result > 0 ? result += 1 : result -= 1;
+                }
+            }
+        }
+
+        return result;
     }
 
     /**
@@ -57,6 +107,7 @@ library PriceMath {
     /**
      * @notice Decreases an amount by a given percentage
      * @dev The percentage is expressed as basis points (1/100th of a percent)
+     * @dev Can revert/overflow if value of `a * p` exceeds `type(uint256).max`
      * @param a The base amount
      * @param p The percentage to decrease by, in basis points (1% = 100, 100% = 10000)
      * @return The amount decreased by the specified percentage
