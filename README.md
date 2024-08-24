@@ -1,6 +1,6 @@
 ## Price Math
 
-This repo consists of a Solidity library called `PriceMath.sol`. This library contains a handful of arithmetic functions to aide developers when handling prices.
+This repo consists of a Solidity library called `PriceMath.sol`. This library contains a handful of arithmetic functions to aid developers when handling prices.
 
 ### absDiff
 
