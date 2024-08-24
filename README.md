@@ -1,66 +1,43 @@
-## Foundry
+## Price Math
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+This repo consists of a Solidity library called `PriceMath.sol`. This library contains a handful of arithmetic functions to aide developers when handling prices.
 
-Foundry consists of:
+### absDiff
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+Returns the absolute change between two unsigned integers
 
-## Documentation
-
-https://book.getfoundry.sh/
-
-## Usage
-
-### Build
-
-```shell
-$ forge build
+```solidity
+absDiff(uint256 a, uint256 b) returns(uint256) {};
 ```
 
-### Test
+### relChange
 
-```shell
-$ forge test
+Returns the relative change between two unsigned integers
+
+```solidity
+relChange(uint256 a, uint256 b) returns(uint256)
 ```
 
-### Format
+### signedRelChange
 
-```shell
-$ forge fmt
+Returns the signed relative change between two unsigned integers
+
+```solidity
+signedRelChange(uint256 a, uint256 b) returns(int256)
 ```
 
-### Gas Snapshots
+### addPerc
 
-```shell
-$ forge snapshot
+Increases an amount by a given percentage
+
+```solidity
+addPerc(uint256 a, uint256 p) returns(uint256)
 ```
 
-### Anvil
+### subPerc
 
-```shell
-$ anvil
-```
+Decreases an amount by a given percentage
 
-### Deploy
-
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
+```solidity
+subPerc(uint256 a, uint256 p) returns(uint256)
 ```
