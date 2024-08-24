@@ -7,7 +7,7 @@ This repo consists of a Solidity library called `PriceMath.sol`. This library co
 Returns the absolute change between two unsigned integers
 
 ```solidity
-absDiff(uint256 a, uint256 b) returns(uint256) {};
+absDiff(uint256 a, uint256 b) returns(uint256)
 ```
 
 ### relChange
