@@ -1,0 +1,21 @@
+{
+  "name": "price-math",
+  "version": "1.0.0",
+  "description": "This repo consists of a Solidity library called `PriceMath.sol`. This library contains a handful of arithmetic functions to aid developers when handling prices.",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-foundry": "^1.1.2",
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "hardhat": "^2.22.9"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

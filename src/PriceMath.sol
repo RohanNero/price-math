@@ -7,7 +7,7 @@ pragma solidity 0.8.26;
  * @notice This library contains a handful of arithmetic functions to aid developers when handling prices */
 library PriceMath {
     /**@notice Returns the absolute change between two unsigned integers */
-    function absDiff(uint256 a, uint256 b) public pure returns (uint256) {
+    function absDiff(uint256 a, uint256 b) internal pure returns (uint256) {
         return a > b ? a - b : b - a;
     }
 
@@ -34,7 +34,7 @@ library PriceMath {
         uint256 a,
         uint256 b,
         bool roundUp
-    ) public pure returns (uint256) {
+    ) internal pure returns (uint256) {
         uint256 diff = absDiff(a, b);
         uint256 result = (diff * 1e4) / a;
         if (roundUp && (diff * 1e4) % a != 0) {
@@ -67,7 +67,7 @@ library PriceMath {
         uint256 a,
         uint256 b,
         bool roundUp
-    ) public pure returns (int256) {
+    ) internal pure returns (int256) {
         if (a == 0) {
             return b > 0 ? int256(type(int256).max) : int256(0);
         }
@@ -98,7 +98,7 @@ library PriceMath {
      * @param p The percentage to increase by, in basis points (1% = 100, 100% = 10000)
      * @return The amount increased by the specified percentage
      */
-    function addPerc(uint256 a, uint256 p) public pure returns (uint256) {
+    function addPerc(uint256 a, uint256 p) internal pure returns (uint256) {
         if (p == 0) return a;
         return a + ((a * p) / 10000);
     }
@@ -111,7 +111,7 @@ library PriceMath {
      * @param p The percentage to decrease by, in basis points (1% = 100, 100% = 10000)
      * @return The amount decreased by the specified percentage
      */
-    function subPerc(uint256 a, uint256 p) public pure returns (uint256) {
+    function subPerc(uint256 a, uint256 p) internal pure returns (uint256) {
         if (p == 0) return a;
         return a - ((a * p) / 10000);
     }

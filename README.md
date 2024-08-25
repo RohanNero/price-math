@@ -2,6 +2,26 @@
 
 This repo consists of a Solidity library called `PriceMath.sol`. This library contains a handful of arithmetic functions to aid developers when handling prices.
 
+## Tests
+
+There are foundry and hardhat unit tests, as well as some foundry fuzzing tests.
+
+Foundry:
+
+```bash
+forge test
+```
+
+Hardhat:
+
+```bash
+npx hardhat test
+```
+
+## Functions
+
+Listed below are all of the functions inside `PriceMath`, which are all marked `internal pure`.
+
 ### absDiff
 
 Returns the absolute change between two unsigned integers
