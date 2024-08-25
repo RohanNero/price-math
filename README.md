@@ -4,7 +4,7 @@ This repo consists of a Solidity library called `PriceMath.sol`. This library co
 
 ## Tests
 
-There are foundry and hardhat unit tests, as well as some foundry fuzzing tests.
+There are foundry and hardhat unit tests, as well as some foundry fuzz tests.
 
 Foundry:
 
