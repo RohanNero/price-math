@@ -27,7 +27,7 @@ library PriceMath {
      * @dev Loss of precision can occur when using small integers (a < 10,000)
      * @param a The original value
      * @param b The new value
-     * @param roundUp If true, round up the result, if false, round down
+     * @param roundUp If true, round up the result by 0.01%
      * @return The relative change as a percentage in basis points
      */
     function relChange(
@@ -37,11 +37,9 @@ library PriceMath {
     ) public pure returns (uint256) {
         uint256 diff = absDiff(a, b);
         uint256 result = (diff * 1e4) / a;
-
         if (roundUp && (diff * 1e4) % a != 0) {
             result += 1;
         }
-
         return result;
     }
 
@@ -52,6 +50,7 @@ library PriceMath {
      * @dev Maximum positive change = 99.99% (9999 return value) Maximum negative change = -99.99% (-9999 return value)
      * @param a The base value
      * @param b The new value
+     * @param roundUp If true, round up the result by 0.01%
      * @return The percentage change from a to b, scaled by 1e4 (basis points)
      */
     // function signedRelChange(
