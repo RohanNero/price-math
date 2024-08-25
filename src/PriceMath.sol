@@ -12,9 +12,9 @@ library PriceMath {
     }
 
     /**@notice Returns the relative change between two unsigned integers
-     *@dev Maximum change = 99.99% (9999 return value) Minimum change(excluding no change) = .01% (1 return value)
-     *@param a The base Value
-     *@param b The new value
+     * @dev Maximum change = 99.99% (9999 return value) Minimum change(excluding no change) = .01% (1 return value)
+     * @param a The base Value
+     * @param b The new value
      * @return The percentage change from a to b, scaled by 1e4 (basis points)
      */
     /**
