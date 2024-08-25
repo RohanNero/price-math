@@ -43,11 +43,11 @@ contract PriceMathTest is Test {
             5000,
             "The relative change from 100 to 150 should be 5000 basis points (50%)"
         );
-        result = PriceMath.relChange(10, 30, false);
+        result = PriceMath.relChange(10, 50, false);
         assertEq(
             result,
-            20000,
-            "The relative change from 10 to 30 should be 20000 basis points (200%)"
+            40000,
+            "The relative change from 10 to 50 should be 40000 basis points (400%)"
         );
     }
 
