@@ -17,10 +17,6 @@ library PriceMath {
      *@param b The new value
      * @return The percentage change from a to b, scaled by 1e4 (basis points)
      */
-    // function relChange(uint256 a, uint256 b) public pure returns (uint256) {
-    //     uint diff = absDiff(a, b);
-    //     return (diff * 1e4) / a;
-    // }
     /**
      * @notice Calculates the relative change between two values
      * @dev Returns the percentage change in basis points (1/100th of a percent)
@@ -53,16 +49,6 @@ library PriceMath {
      * @param roundUp If true, round up the result by 0.01%
      * @return The percentage change from a to b, scaled by 1e4 (basis points)
      */
-    // function signedRelChange(
-    //     uint256 a,
-    //     uint256 b
-    // ) public pure returns (int256) {
-    //     if (a == 0) {
-    //         return b > 0 ? int256(type(int256).max) : int256(0);
-    //     }
-    //     int256 diff = int256(b) - int256(a);
-    //     return (diff * 1e4) / int256(a);
-    // }
     function signedRelChange(
         uint256 a,
         uint256 b,
@@ -71,10 +57,8 @@ library PriceMath {
         if (a == 0) {
             return b > 0 ? int256(type(int256).max) : int256(0);
         }
-
         int256 diff = int256(b) - int256(a);
         int256 result = (diff * 1e4) / int256(a);
-
         if (roundUp) {
             // Check if there's a remainder to decide if rounding is needed
             int256 remainder = (diff * 1e4) % int256(a);
@@ -87,7 +71,6 @@ library PriceMath {
                 }
             }
         }
-
         return result;
     }
 
